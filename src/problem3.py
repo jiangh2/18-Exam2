@@ -26,9 +26,9 @@ def main():
     print(' to run the testing code as you complete the TODOs.')
 
     #run_test_init()
-    run_test_rain()
-    # run_test_get_total_rain_amount()
-    # run_test_merge_cloud()
+    #run_test_rain()
+    #run_test_get_total_rain_amount()
+    run_test_merge_cloud()
 
 
 ###############################################################################
@@ -80,6 +80,7 @@ class Cloud(object):
             self.water = water
         else:
             self.water = capacity
+        self.total_rain_amount = 0
         # ---------------------------------------------------------------------
         # DONE: 2. Implement and test this method.
         # ---------------------------------------------------------------------
@@ -128,9 +129,11 @@ class Cloud(object):
         """
         if rain_amount <= self.water:
             self.water = self.water - rain_amount
+            self.total_rain_amount = self.total_rain_amount + rain_amount
             return rain_amount
         else:
             temp = self.water
+            self.total_rain_amount = self.total_rain_amount + temp
             self.water = 0
             return temp
 
@@ -168,8 +171,9 @@ class Cloud(object):
         Type hints:
           :rtype: int | float
         """
+        return self.total_rain_amount
         # ---------------------------------------------------------------------
-        # TODO: 4. Implement and test this method.
+        # DONE: 4. Implement and test this method.
         # ---------------------------------------------------------------------
 
 
@@ -201,6 +205,10 @@ class Cloud(object):
             #   cloud4.capacity   is 110
             #   cloud4.water      is 10
         """
+        self.capacity = self.capacity + another_cloud.capacity
+        self.water = self.water + another_cloud.water
+        another_cloud.capacity = 0
+        another_cloud.water = 0
         # ---------------------------------------------------------------------
         # TODO: 5. Implement and test this method.
         # ---------------------------------------------------------------------
